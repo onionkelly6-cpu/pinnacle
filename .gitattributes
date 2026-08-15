@@ -1,0 +1,15 @@
+# Prevent Git (core.autocrlf=true on Windows) from rewriting line endings
+# inside binary files — a hand-built PDF is nearly all ASCII, so without
+# this it gets misdetected as text and its byte-exact xref table breaks
+# on checkout.
+*.pdf binary
+*.doc binary
+*.docx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary

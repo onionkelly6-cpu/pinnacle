@@ -1,0 +1,377 @@
+@import "tailwindcss";
+
+/*
+ * Token system: two theme scopes share the same semantic variable names
+ * (--background, --foreground, --primary, ...) so components never branch
+ * on "which site am I in" — only the wrapping .theme-marketing / .theme-portal
+ * class (set once, in each route group's layout) changes.
+ */
+
+:root {
+  /* Fallback = portal theme, so any ungrouped route
+     (e.g. a root-level not-found page) still renders sensibly. */
+  --background: #f7f3ea;
+  --card: #fffdf8;
+  --foreground: #1c2b22;
+  --muted: #eef0e2;
+  --muted-foreground: #5e6b5a;
+  --border: #dcdcc6;
+  --primary: #1f5c45;
+  --primary-foreground: #f3fbf6;
+  --accent: #b8863a;
+  --accent-foreground: #2e1d05;
+  --success: #2f7d4f;
+  --warning: #a16824;
+  --destructive: #a13d33;
+  --ring: #1f5c45;
+}
+
+.theme-marketing {
+  --background: #0b1420;
+  --card: #12201b;
+  --foreground: #f2ede1;
+  --muted: #17281f;
+  --muted-foreground: #a9b8ac;
+  --border: #2a4536;
+  --primary: #5ec99a;
+  --primary-foreground: #06231a;
+  --accent: #e0b563;
+  --accent-foreground: #2e1d05;
+  --accent-2: #8fd6b0;
+  --success: #5dc595;
+  --warning: #e8a454;
+  --destructive: #ee7466;
+  --ring: #5ec99a;
+  --hero-from: #0f1f18;
+  --hero-to: #081119;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.02), 0 12px 32px -18px rgba(0, 0, 0, 0.6);
+}
+
+.theme-portal {
+  --background: #f7f3ea;
+  --card: #fffdf8;
+  --foreground: #1c2b22;
+  --muted: #eef0e2;
+  --muted-foreground: #5e6b5a;
+  --border: #dcdcc6;
+  --primary: #1f5c45;
+  --primary-foreground: #f3fbf6;
+  --accent: #b8863a;
+  --accent-foreground: #2e1d05;
+  --accent-2: #7fae8f;
+  --success: #2f7d4f;
+  --warning: #a16824;
+  --destructive: #a13d33;
+  --ring: #1f5c45;
+  --hero-from: #f3efe3;
+  --hero-to: #e6e0cd;
+  --shadow-card: 0 1px 2px rgba(28, 43, 34, 0.07), 0 16px 32px -20px rgba(28, 43, 34, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+  --color-ring: var(--ring);
+  --color-accent-2: var(--accent-2);
+
+  --font-display: var(--font-display-family);
+  --font-sans: var(--font-sans-family);
+  --font-mono: var(--font-mono-family);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Always-visible focus states, independent of theme */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ---- Motion foundation ----------------------------------------------------
+ * `.reveal` elements start hidden + translated and animate to visible when the
+ * `.is-visible` class is added by the <Reveal> wrapper (IntersectionObserver).
+ * Everything collapses to instant under prefers-reduced-motion (below).
+ */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.reveal-left {
+  transform: translateX(-24px);
+}
+.reveal.reveal-right {
+  transform: translateX(24px);
+}
+.reveal.reveal-scale {
+  transform: scale(0.96);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hover lift for cards / links (motion-safe only) */
+.lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Animated gradient text/border helper */
+.gradient-pan {
+  background-size: 200% 200%;
+  animation: gradient-pan 8s ease infinite;
+}
+
+/* Marquee track */
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+/* Subtle hero float */
+.float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+/* Status-badge pulse (motion-safe) */
+.pulse-ring {
+  animation: pulse-soft 2.4s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 0%, transparent);
+  }
+}
+
+/* Case timeline: steps pop in and the connecting line "fills" left to right */
+@keyframes timeline-step-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.timeline-step {
+  animation: timeline-step-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes timeline-line-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.timeline-line-fill {
+  transform-origin: left center;
+  animation: timeline-line-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Splash screen entrance: icon pops, wordmark rises, rule draws underneath */
+@keyframes splash-icon-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.4) rotate(-10deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+.splash-icon-in {
+  animation: splash-icon-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes splash-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.splash-text-in {
+  animation: splash-text-in 0.5s ease-out 0.3s both;
+}
+
+@keyframes splash-rule-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+.splash-rule-in {
+  transform-origin: center;
+  animation: splash-rule-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Thin top accent bar used in the marketing shell */
+.accent-rule {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--accent-2),
+    var(--primary)
+  );
+  background-size: 200% 100%;
+}
+
+/* ---- Page-switch transitions (React <ViewTransition>, see page-transition.tsx) */
+::view-transition-old(.page-exit) {
+  animation: 160ms cubic-bezier(0.4, 0, 1, 1) both page-exit-out;
+}
+::view-transition-new(.page-enter) {
+  animation: 320ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both page-enter-in;
+}
+
+@keyframes page-exit-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+  }
+}
+
+@keyframes page-enter-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+}
+
+/* Button-triggered navigation (Link transitionTypes={["nav-forward"]}) gets a
+ * more noticeable directional slide instead of the plain crossfade above. */
+::view-transition-old(.nav-forward) {
+  animation: 200ms ease-in both nav-forward-out;
+}
+::view-transition-new(.nav-forward) {
+  animation: 360ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both nav-forward-in;
+}
+
+@keyframes nav-forward-out {
+  to {
+    opacity: 0;
+    transform: translateX(-32px) scale(0.98);
+  }
+}
+
+@keyframes nav-forward-in {
+  from {
+    opacity: 0;
+    transform: translateX(32px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Ensure reveal content is never stuck hidden for reduced-motion users */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* The universal selector above can't reach the browser's view-transition
+     pseudo-element tree, so silence page-switch animations explicitly. */
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
