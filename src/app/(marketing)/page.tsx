@@ -18,7 +18,7 @@ const stats = [
   { label: "Client portal uptime", value: "99.98%" },
 ];
 
-const barAdmissions = ["Ontario"];
+const barAdmissions = ["England and Wales"];
 
 const portalSteps = [
   {

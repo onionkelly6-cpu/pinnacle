@@ -12,10 +12,10 @@ export const attorneys = [
       "Margaret has spent over two decades advising families through divorce, custody, and immigration matters, from straightforward uncontested filings to complex cross-border cases. She's known for translating dense legal language into a decision clients can actually make.",
     email: "margaret.wills@fairmontlawagency.example",
     education: [
-      { school: "University of Toronto", degree: "JD", year: "2001" },
-      { school: "McGill University", degree: "B.A., Political Science", year: "1998" },
+      { school: "University College London", degree: "JD", year: "2001" },
+      { school: "London School of Economics", degree: "B.A., Political Science", year: "1998" },
     ],
-    barAdmissions: ["Ontario"],
+    barAdmissions: ["England and Wales"],
     notableMatters: [
       "Negotiated a parenting plan preserving joint custody across a cross-border relocation",
       "Represented a family through a complex sponsorship and permanent residency application",
@@ -32,10 +32,10 @@ export const attorneys = [
       "Daniel has spent two decades advising business owners on formation, contracts, and workplace policy, helping clients avoid disputes before they start and resolve them efficiently when they can't.",
     email: "daniel.weiner@fairmontlawagency.example",
     education: [
-      { school: "Osgoode Hall Law School", degree: "JD", year: "2002" },
-      { school: "University of Waterloo", degree: "B.A., Economics", year: "1999" },
+      { school: "King's College London", degree: "JD", year: "2002" },
+      { school: "University of Warwick", degree: "B.A., Economics", year: "1999" },
     ],
-    barAdmissions: ["Ontario"],
+    barAdmissions: ["England and Wales"],
     notableMatters: [
       "Advised a founding team through a Series A financing",
       "Negotiated the sale of a regional logistics company to a national acquirer",
@@ -47,12 +47,12 @@ export const attorneys = [
     title: "Attorney at Law, Head of Wills, Estates and Trusts",
     image: undefined as string | undefined,
     practiceAreas: ["estate-planning"],
-    bio: "Richard leads the Wills, Estates and Trusts practice at Fairmont Law Agency, advising clients across Ontario on wills, estate planning, and trust administration.",
+    bio: "Richard leads the Wills, Estates and Trusts practice at Fairmont Law Agency, advising clients across England and Wales on wills, estate planning, and trust administration.",
     longBio:
-      "Richard Worsfold, Esq. heads the Wills, Estates and Trusts group at Fairmont Law Agency, based in Toronto. He advises individuals and families on wills, estate planning, and trust administration.",
+      "Richard Worsfold, Esq. heads the Wills, Estates and Trusts group at Fairmont Law Agency, based in London. He advises individuals and families on wills, estate planning, and trust administration.",
     email: "richard.worsfold.esq@outlook.com",
     education: [] as { school: string; degree: string; year: string }[],
-    barAdmissions: ["Ontario"],
+    barAdmissions: ["England and Wales"],
     notableMatters: [] as string[],
   },
 ] as const;

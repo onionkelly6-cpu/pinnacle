@@ -65,7 +65,7 @@ const legalServiceSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   telephone: offices[0].phones[0].number,
-  areaServed: ["Toronto", "Ontario", "Canada"],
+  areaServed: ["London", "England", "United Kingdom"],
 };
 
 export default function RootLayout({
