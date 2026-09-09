@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Check, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { MATTER_STAGES, type MatterStage } from "@/lib/demo-matters";
+import { MATTER_STAGES, type MatterStage } from "@/lib/matter-stages";
 
 export function MatterStatusControl({
   matterId,

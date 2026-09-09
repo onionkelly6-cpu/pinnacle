@@ -1,4 +1,5 @@
 import { redis } from "@/lib/redis";
+import { MATTER_STAGES, type MatterStage } from "@/lib/matter-stages";
 
 /**
  * DEMO-ONLY matter records, backed by Upstash Redis instead of a local
@@ -9,8 +10,10 @@ import { redis } from "@/lib/redis";
  * over plain HTTPS from any instance) is what makes that consistent.
  * Replaced by a real `Matter` model in Milestone 2.
  */
-export const MATTER_STAGES = ["Filed", "Discovery", "Hearing Scheduled", "Resolved"] as const;
-export type MatterStage = (typeof MATTER_STAGES)[number];
+// Re-exported for existing server-side consumers that import these from
+// this module. `matter-stages.ts` is the source of truth so client
+// components can use them without pulling in the Redis import above.
+export { MATTER_STAGES, type MatterStage };
 
 export interface DemoMatter {
   id: string;
