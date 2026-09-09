@@ -22,7 +22,7 @@ export default async function FirmClientsPage() {
   const accounts = await listClientAccounts();
   const accountsWithMatterInfo = await Promise.all(
     accounts.map(async (account) => {
-      const linkedClient = getClientByEmail(account.email);
+      const linkedClient = await getClientByEmail(account.email);
       const hasMatters = linkedClient
         ? (await getMattersForClient(linkedClient.id)).length > 0
         : false;

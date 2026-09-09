@@ -6,6 +6,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { practiceAreas } from "@/lib/content/practice-areas";
 import { offices } from "@/lib/content/offices";
 import { SITE_CONTACT_EMAIL } from "@/lib/site-config";
+import { submitLeadAction } from "./actions";
 
 export const metadata = {
   title: "Contact",
@@ -13,7 +14,13 @@ export const metadata = {
     "Contact Fairmont Law Agency to schedule a consultation. Two offices, direct attorney access, and a response within one business day.",
 };
 
-export default function ContactPage() {
+type Props = {
+  searchParams: Promise<{ error?: string; success?: string }>;
+};
+
+export default async function ContactPage({ searchParams }: Props) {
+  const params = await searchParams;
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-20">
       <Reveal>
@@ -31,7 +38,23 @@ export default function ContactPage() {
       <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[3fr_2fr]">
         <Reveal direction="left">
           <Card>
-            <form className="space-y-6" aria-describedby="intake-form-note">
+            {params.success && (
+              <p
+                role="status"
+                className="mb-6 rounded-sm border border-success/40 bg-success/10 px-4 py-3 text-sm text-success"
+              >
+                Thanks — your message is in. Our intake team will follow up within one business day.
+              </p>
+            )}
+            {params.error && (
+              <p
+                role="alert"
+                className="mb-6 rounded-sm border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+              >
+                {params.error}
+              </p>
+            )}
+            <form action={submitLeadAction} className="space-y-6" aria-describedby="intake-form-note">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium">
                   Full name
@@ -97,12 +120,12 @@ export default function ContactPage() {
                   className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-2.5 text-foreground transition-colors focus-visible:outline-none focus-visible:border-primary"
                 />
               </div>
-              <Button type="submit" variant="primary" disabled>
+              <Button type="submit" variant="primary">
                 Submit Inquiry
               </Button>
               <p id="intake-form-note" className="text-xs text-muted-foreground">
-                Submission is wired up to create a Lead record and notify the
-                intake team in Milestone 7, disabled for now.
+                This creates a Lead record our intake team reviews. Email
+                notifications land in Milestone 8.
               </p>
             </form>
           </Card>

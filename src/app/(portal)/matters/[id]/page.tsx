@@ -3,11 +3,14 @@ import { Tabs } from "@/components/ui/tabs";
 import { CaseTimeline } from "@/components/portal/case-timeline";
 import { DocumentList } from "@/components/portal/document-list";
 import { LiveMatterUpdates } from "@/components/portal/live-matter-updates";
+import { MessageThread } from "@/components/portal/message-thread";
+import { MessageComposer } from "@/components/portal/message-composer";
 import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/motion/reveal";
 import { auth } from "@/lib/auth";
 import { getDocumentsForMatter, getSignedDownloadHref } from "@/lib/demo-documents";
 import { getMatterById, MATTER_STAGES } from "@/lib/demo-matters";
+import { getMessagesForMatter } from "@/lib/demo-messages";
 import { getClientByEmail } from "@/lib/demo-clients";
 
 type Props = {
@@ -18,7 +21,7 @@ export default async function MatterDetailPage({ params }: Props) {
   const { id } = await params;
   const session = await auth();
   const matter = await getMatterById(id);
-  const client = session?.user?.email ? getClientByEmail(session.user.email) : undefined;
+  const client = session?.user?.email ? await getClientByEmail(session.user.email) : undefined;
 
   if (!matter || !client || matter.clientId !== client.id) {
     notFound();
@@ -28,6 +31,7 @@ export default async function MatterDetailPage({ params }: Props) {
   // them — internal-only documents never appear here.
   const allDocuments = await getDocumentsForMatter(id);
   const documents = allDocuments.filter((doc) => doc.visibility === "client");
+  const messages = await getMessagesForMatter(id);
 
   return (
     <div>
@@ -73,10 +77,10 @@ export default async function MatterDetailPage({ params }: Props) {
               id: "messages",
               label: "Messages",
               content: (
-                <Card className="text-center text-muted-foreground">
-                  No messages yet. Threaded, case-scoped messaging with your
-                  attorney is built in Milestone 6.
-                </Card>
+                <div className="space-y-4">
+                  <MessageThread messages={messages} currentUserName={session?.user?.name} />
+                  <MessageComposer matterId={id} />
+                </div>
               ),
             },
           ]}

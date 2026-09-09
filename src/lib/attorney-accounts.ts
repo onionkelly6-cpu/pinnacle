@@ -42,6 +42,11 @@ export async function getAttorneyAccountByEmail(
   return account ?? undefined;
 }
 
+export async function getAttorneyAccountById(id: string): Promise<AttorneyAccount | undefined> {
+  const account = await redis.get<AttorneyAccount>(ACCOUNT_KEY(id));
+  return account ?? undefined;
+}
+
 export async function createAttorneyAccount(params: {
   email: string;
   password: string;

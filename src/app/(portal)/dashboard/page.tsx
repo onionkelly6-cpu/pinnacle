@@ -9,7 +9,7 @@ export const metadata = { title: "Dashboard" };
 
 export default async function DashboardPage() {
   const session = await auth();
-  const client = session?.user?.email ? getClientByEmail(session.user.email) : undefined;
+  const client = session?.user?.email ? await getClientByEmail(session.user.email) : undefined;
   const matters = client ? await getMattersForClient(client.id) : [];
 
   const rows: DocketRow[] = matters.map((matter) => ({

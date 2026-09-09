@@ -27,10 +27,8 @@ export async function GET(request: NextRequest, { params }: Props) {
 
   const role = session.user.role;
   const isAssignedAttorney = role === "attorney" && matter.attorney === session.user.name;
-  const isOwningClient =
-    role === "client" &&
-    !!session.user.email &&
-    getClientByEmail(session.user.email)?.id === matter.clientId;
+  const owningClient = session.user.email ? await getClientByEmail(session.user.email) : undefined;
+  const isOwningClient = role === "client" && owningClient?.id === matter.clientId;
 
   if (!isAssignedAttorney && !isOwningClient) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });

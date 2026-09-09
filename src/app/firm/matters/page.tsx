@@ -13,20 +13,29 @@ export default async function FirmMattersPage() {
   const matters = await getMattersForAttorney(session?.user?.name ?? "");
   const unassigned = await getUnassignedMatters();
 
-  const rows: DocketRow[] = matters.map((matter) => ({
-    id: matter.id,
-    caseNumber: matter.caseNumber,
-    matter: matter.title,
-    status: matter.status,
-    nextDate: matter.nextDate,
-    practiceArea: matter.practiceArea,
-    client: getClientById(matter.clientId)?.name,
-  }));
+  const rows: DocketRow[] = await Promise.all(
+    matters.map(async (matter) => ({
+      id: matter.id,
+      caseNumber: matter.caseNumber,
+      matter: matter.title,
+      status: matter.status,
+      nextDate: matter.nextDate,
+      practiceArea: matter.practiceArea,
+      client: (await getClientById(matter.clientId))?.name,
+    }))
+  );
 
   const statCounts = MATTER_STAGES.map((status) => ({
     status,
     count: rows.filter((row) => row.status === status).length,
   }));
+
+  const unassignedWithClientName = await Promise.all(
+    unassigned.map(async (matter) => ({
+      matter,
+      clientName: (await getClientById(matter.clientId))?.name ?? "Unknown",
+    }))
+  );
 
   return (
     <div>
@@ -67,11 +76,11 @@ export default async function FirmMattersPage() {
             docket.
           </p>
           <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {unassigned.map((matter, i) => (
+            {unassignedWithClientName.map(({ matter, clientName }, i) => (
               <Reveal key={matter.id} delay={i * 80}>
                 <AssignClientCard
                   matterId={matter.id}
-                  clientName={getClientById(matter.clientId)?.name ?? "Unknown"}
+                  clientName={clientName}
                   title={matter.title}
                   caseNumber={matter.caseNumber}
                   practiceArea={matter.practiceArea}

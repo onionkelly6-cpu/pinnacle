@@ -6,11 +6,14 @@ import { DocumentList } from "@/components/portal/document-list";
 import { DocumentUploadForm } from "@/components/portal/document-upload-form";
 import { MatterStatusControl } from "@/components/portal/matter-status-control";
 import { LiveMatterUpdates } from "@/components/portal/live-matter-updates";
+import { MessageThread } from "@/components/portal/message-thread";
+import { MessageComposer } from "@/components/portal/message-composer";
 import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/motion/reveal";
 import { auth } from "@/lib/auth";
 import { getDocumentsForMatter, getSignedDownloadHref } from "@/lib/demo-documents";
 import { getMatterById, MATTER_STAGES } from "@/lib/demo-matters";
+import { getMessagesForMatter } from "@/lib/demo-messages";
 import { getClientById } from "@/lib/demo-clients";
 
 type Props = {
@@ -28,8 +31,9 @@ export default async function FirmMatterDetailPage({ params }: Props) {
     notFound();
   }
 
-  const client = getClientById(matter.clientId);
+  const client = await getClientById(matter.clientId);
   const documents = await getDocumentsForMatter(id);
+  const messages = await getMessagesForMatter(id);
 
   return (
     <div>
@@ -94,9 +98,10 @@ export default async function FirmMatterDetailPage({ params }: Props) {
               id: "messages",
               label: "Messages",
               content: (
-                <Card className="text-center text-muted-foreground">
-                  No messages yet. Case-scoped messaging lands in Milestone 6.
-                </Card>
+                <div className="space-y-4">
+                  <MessageThread messages={messages} currentUserName={session?.user?.name} />
+                  <MessageComposer matterId={id} />
+                </div>
               ),
             },
             {

@@ -15,19 +15,27 @@ Being delivered in milestones, each checked in before moving on:
    working demo login gates the portal/workspace by role (see below), but
    it checks a hardcoded account list, not a database — see
    [SECURITY.md](./SECURITY.md)
-4. **Public marketing site content — mostly done**: home, about, practice
-   areas, attorney bios, case results, FAQ, locations, contact form (UI
-   only, not wired to a `Lead` record yet)
+4. **Public marketing site content — done**: home, about, practice areas,
+   attorney bios, case results, FAQ, locations, and a live contact form
+   that creates a real `Lead` record (rate-limited, see below)
 5. Client portal — **dashboard and case detail are ownership-scoped and
    live** (see below), ahead of schedule; still demo data, not a real
    `Client`/`Matter` table
-6. Firm-side workspace — **document sharing, status updates, and live case
-   tracking work end to end** between an attorney and their assigned
-   client (see below) — this is now **attorney + client only**; staff/admin
-   keep the rest of the firm workspace (leads, account admin) but no
-   longer touch matters/documents/docket. Messaging is still a disabled
-   stub
-7. Lead intake → inbox → convert-to-matter — not started (form UI disabled)
+6. Firm-side workspace — **document sharing, status updates, live case
+   tracking, and case-scoped messaging all work end to end** between an
+   attorney and their assigned client (see below) — this is now
+   **attorney + client only**; staff/admin keep the rest of the firm
+   workspace (leads, account admin) but no longer touch matters/documents/
+   docket/messages. Messages are demo data (Redis-backed, see
+   `src/lib/demo-messages.ts`), not a real `Message` table yet
+7. **Lead intake → inbox → convert-to-matter — done**: the public contact
+   form creates a `Lead` (Redis-backed, `src/lib/demo-leads.ts`,
+   rate-limited via `intakeRateLimit`); `/firm/leads` is a real inbox open
+   to every firm role for triage ("Mark Contacted"), but "Convert to
+   Matter" is attorney-only and creates a real `DemoClient` + `DemoMatter`
+   in one step, auto-assigned to the converting attorney. Granting the new
+   client an actual portal login is still the separate, deliberate step at
+   `/firm/clients` (as before)
 8. Notifications (email) — not started
 9. Polish pass (empty/error/loading states, mobile QA) — not started
 

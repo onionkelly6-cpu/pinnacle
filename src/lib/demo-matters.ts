@@ -123,6 +123,37 @@ export async function getMatterById(id: string): Promise<DemoMatter | undefined>
 }
 
 /**
+ * Opens a new matter — used by Lead → Convert to Matter (`/firm/leads`).
+ * Always starts at the first case stage, assigned directly to the
+ * converting attorney rather than dropped into the unclaimed pool, since
+ * they're the one who reviewed the lead and chose to take the case.
+ */
+export async function createMatter(params: {
+  caseNumber: string;
+  title: string;
+  practiceArea: string;
+  clientId: string;
+  attorney: string;
+}): Promise<DemoMatter> {
+  await ensureSeeded();
+
+  const matter: DemoMatter = {
+    id: `matter-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    caseNumber: params.caseNumber,
+    title: params.title,
+    status: MATTER_STAGES[0],
+    attorney: params.attorney,
+    practiceArea: params.practiceArea,
+    clientId: params.clientId,
+  };
+
+  await redis.set(MATTER_KEY(matter.id), matter);
+  await redis.sadd(INDEX_KEY, matter.id);
+
+  return matter;
+}
+
+/**
  * A per-matter counter, bumped by every mutation below (and by
  * `addDocument` in `demo-documents/data.ts`). `LiveMatterUpdates` polls
  * `getMatterVersion` every few seconds and only refreshes the page when
@@ -153,6 +184,24 @@ export async function getMattersForClient(clientId: string): Promise<DemoMatter[
 export async function getUnassignedMatters(): Promise<DemoMatter[]> {
   const matters = await getAllMatters();
   return matters.filter((m) => m.attorney === null);
+}
+
+/**
+ * Releases every matter assigned to `attorneyName` back into the unclaimed
+ * pool. Called when an attorney account is revoked (`deleteAttorneyAccount`
+ * only removes the login, it has no idea which matters point at that name)
+ * — without this, a revoked attorney's matters would still carry their name
+ * and drop out of both `getMattersForAttorney` and `getUnassignedMatters`,
+ * making them permanently invisible to the rest of the firm workspace.
+ */
+export async function unassignMattersForAttorney(attorneyName: string): Promise<void> {
+  const matters = await getMattersForAttorney(attorneyName);
+  await Promise.all(
+    matters.map(async (matter) => {
+      await redis.set(MATTER_KEY(matter.id), { ...matter, attorney: null });
+      await bumpMatterVersion(matter.id);
+    })
+  );
 }
 
 export async function updateMatterStatus(

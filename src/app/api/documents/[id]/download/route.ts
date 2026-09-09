@@ -42,11 +42,9 @@ export async function GET(request: NextRequest, { params }: Props) {
   // only download documents on matters assigned to them.
   const role = session.user.role;
   const isAssignedAttorney = role === "attorney" && matter.attorney === session.user.name;
+  const owningClient = session.user.email ? await getClientByEmail(session.user.email) : undefined;
   const isOwningClient =
-    role === "client" &&
-    !!session.user.email &&
-    getClientByEmail(session.user.email)?.id === matter.clientId &&
-    doc.visibility === "client";
+    role === "client" && owningClient?.id === matter.clientId && doc.visibility === "client";
 
   if (!isAssignedAttorney && !isOwningClient) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
