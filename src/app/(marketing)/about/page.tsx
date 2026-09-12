@@ -6,11 +6,11 @@ import { Reveal } from "@/components/motion/reveal";
 export const metadata = {
   title: "About",
   description:
-    "Fairmont Law Agency has served clients for over 30 years across family law, business, personal injury, real estate, estate planning, and more, with a client portal that always shows you where your matter stands.",
+    "Pinnacle Legal & Business Law has served clients since 2011 across family law, business, personal injury, real estate, estate planning, and more, with a client portal that always shows you where your matter stands.",
 };
 
 const stats = [
-  { label: "Years serving clients", value: "30+" },
+  { label: "Years serving clients", value: "15+" },
   { label: "Matters opened", value: "4,200+" },
   { label: "Practice areas", value: `${practiceAreas.length}` },
   { label: "Client portal uptime", value: "99.9%" },
@@ -51,13 +51,14 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-linear-to-r from-background via-background/95 to-background/55" />
         </div>
         <div className="relative mx-auto max-w-4xl px-6 py-24">
-          <h1 className="font-display text-4xl">About Fairmont Law Agency</h1>
+          <h1 className="font-display text-4xl">About Pinnacle Legal & Business Law</h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            Fairmont Law Agency was founded on a simple premise: clients deserve
-            a straight answer and to always know where their matter stands.
-            Three decades later, that&apos;s still what sets us apart: steady
-            counsel, clearly communicated, backed by a portal that keeps you
-            informed without having to ask.
+            Pinnacle Legal & Business Law was founded in Berlin in 2011 on a
+            simple premise: clients deserve a straight answer and to always
+            know where their matter stands. More than a decade later,
+            that&apos;s still what sets us apart: steady counsel, clearly
+            communicated, backed by a portal that keeps you informed without
+            having to ask.
           </p>
         </div>
       </section>
@@ -77,7 +78,7 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-20">
         <Reveal>
-          <h2 className="font-display text-3xl">Why Fairmont Law Agency</h2>
+          <h2 className="font-display text-3xl">Why Pinnacle Legal & Business Law</h2>
         </Reveal>
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((value, i) => (

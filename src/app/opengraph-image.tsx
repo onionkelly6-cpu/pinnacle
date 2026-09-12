@@ -35,7 +35,7 @@ export default function OpengraphImage() {
             marginBottom: 32,
           }}
         >
-          F
+          P
         </div>
         <div style={{ display: "flex", fontSize: 56, fontFamily: "serif" }}>
           {SITE_NAME}

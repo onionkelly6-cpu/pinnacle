@@ -12,13 +12,13 @@ import { attorneys } from "@/lib/content/attorneys";
 import { caseResults } from "@/lib/content/case-results";
 
 const stats = [
-  { label: "Years serving clients", value: "25+" },
+  { label: "Years serving clients", value: "15+" },
   { label: "Matters opened", value: "5,100+" },
   { label: "Practice areas", value: `${practiceAreas.length}` },
   { label: "Client portal uptime", value: "99.98%" },
 ];
 
-const barAdmissions = ["England and Wales"];
+const barAdmissions = ["Germany"];
 
 const portalSteps = [
   {
@@ -77,7 +77,7 @@ export default function HomePage() {
             Steady counsel, clearly communicated.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Fairmont Law Agency helps families and founders move through
+            Pinnacle Legal & Business Law helps families and founders move through
             legal complexity with a practical plan, honest timelines, and a
             portal built to keep you informed at every step.
           </p>

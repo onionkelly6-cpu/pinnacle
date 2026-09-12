@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Scale, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -25,20 +26,17 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-display text-xl tracking-wide"
+          className="flex items-center"
           onClick={() => setMenuOpen(false)}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/40 bg-primary/10">
-            <Scale className="h-4 w-4 text-primary" aria-hidden />
-          </span>
-          <span className="flex flex-col leading-none">
-            <span>
-              Fairmont Law <span className="text-primary">Agency</span>
-            </span>
-            <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-              Litigation and Advisory
-            </span>
-          </span>
+          <Image
+            src="/logo.jpg"
+            alt="Pinnacle Legal & Business Law"
+            width={1455}
+            height={1081}
+            priority
+            className="h-14 w-auto rounded-sm"
+          />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 text-sm lg:flex">

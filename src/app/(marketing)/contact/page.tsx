@@ -11,7 +11,7 @@ import { submitLeadAction } from "./actions";
 export const metadata = {
   title: "Contact",
   description:
-    "Contact Fairmont Law Agency to schedule a consultation. Two offices, direct attorney access, and a response within one business day.",
+    "Contact Pinnacle Legal & Business Law to schedule a consultation. Two offices, direct attorney access, and a response within one business day.",
 };
 
 type Props = {
@@ -159,6 +159,7 @@ export default async function ContactPage({ searchParams }: Props) {
                 {offices.map((office) => (
                   <div key={office.name} className="text-sm">
                     <p className="font-medium text-foreground">{office.name}</p>
+                    <p className="mt-1 text-muted-foreground">{office.address}</p>
                     <div className="mt-2 space-y-1.5 pl-0">
                       {office.phones.map((phone) => (
                         <p

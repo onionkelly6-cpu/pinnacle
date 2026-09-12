@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Mail, Scale } from "lucide-react";
+import { Mail } from "lucide-react";
 import { practiceAreas } from "@/lib/content/practice-areas";
 import { offices } from "@/lib/content/offices";
 import { SITE_CONTACT_EMAIL, SITE_NAME } from "@/lib/site-config";
@@ -26,11 +27,14 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="flex items-center gap-2.5 font-display text-lg tracking-wide">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-primary/10">
-                <Scale className="h-4 w-4 text-primary" aria-hidden />
-              </span>
-              Fairmont Law <span className="text-primary">Agency</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo.jpg"
+                alt="Pinnacle Legal & Business Law"
+                width={1455}
+                height={1081}
+                className="h-12 w-auto rounded-sm"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               Built for people and companies who want legal strategy without
@@ -86,6 +90,7 @@ export function SiteFooter() {
               {offices.map((office) => (
                 <li key={office.name}>
                   <p className="font-medium text-foreground">{office.name}</p>
+                  <p>{office.address}</p>
                   {office.phones.map((phone) => (
                     <p key={phone.number} className="font-mono">
                       {phone.number}

@@ -1,4 +1,4 @@
-export const SITE_URL = "https://www.fairmontlawagency.com";
-export const SITE_NAME = "Fairmont Law Agency";
-export const SITE_WORDMARK = "Fairmont Law Agency";
-export const SITE_CONTACT_EMAIL = "fairmontlawagency@legislator.com";
+export const SITE_URL = "https://www.pinnaclelegal.com";
+export const SITE_NAME = "Pinnacle Legal & Business Law";
+export const SITE_WORDMARK = "Pinnacle Legal & Business Law";
+export const SITE_CONTACT_EMAIL = "pinnaclelegal@legislator.com";

@@ -1,5 +1,5 @@
-﻿import Link from "next/link";
-import { Scale } from "lucide-react";
+﻿import Image from "next/image";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { SignupForm } from "./signup-form";
 
@@ -15,14 +15,19 @@ export default async function SignupPage({ searchParams }: Props) {
   return (
     <div className="theme-portal flex min-h-screen items-center justify-center bg-background px-6 py-12 text-foreground">
       <Card className="w-full max-w-sm">
-        <Link href="/" className="flex items-center gap-2 font-display text-lg">
-          <Scale className="h-4 w-4 text-primary" aria-hidden />
-          Fairmont Law <span className="text-primary">Agency</span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.jpg"
+            alt="Pinnacle Legal & Business Law"
+            width={1455}
+            height={1081}
+            className="h-12 w-auto rounded-sm"
+          />
         </Link>
         <h1 className="mt-6 font-display text-2xl">Create Your Client Account</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Set up your own client portal access. No invitation needed. If
-          your email matches a matter Fairmont Law Agency already has on
+          your email matches a matter Pinnacle Legal & Business Law already has on
           file for you, it appears on your dashboard right away.
         </p>
         {params.error && (

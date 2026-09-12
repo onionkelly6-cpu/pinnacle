@@ -1,4 +1,4 @@
-# Fairmont Law Agency — Legal Services Web App
+# Pinnacle Legal & Business Law — Legal Services Web App
 
 A two-sided legal services application: a public marketing site and a
 secure client portal (with a matching firm-side workspace) for tracking
@@ -121,10 +121,10 @@ same page by typing their own credentials, or:
 
 | Role      | Email                                     | Password           |
 | --------- | ------------------------------------------ | ------------------- |
-| client    | client@demo.fairmontlawagency.example       | ClientDemo123!       |
-| attorney  | attorney@demo.fairmontlawagency.example     | AttorneyDemo123!     |
-| staff     | staff@demo.fairmontlawagency.example        | StaffDemo123!        |
-| admin     | admin@demo.fairmontlawagency.example         | AdminDemo123!        |
+| client    | client@demo.pinnaclelegal.example       | ClientDemo123!       |
+| attorney  | attorney@demo.pinnaclelegal.example     | AttorneyDemo123!     |
+| staff     | staff@demo.pinnaclelegal.example        | StaffDemo123!        |
+| admin     | admin@demo.pinnaclelegal.example         | AdminDemo123!        |
 
 `client` lands in the portal (`/dashboard`); `attorney` lands in the firm
 workspace (`/firm/matters`); `staff`/`admin` land in `/firm/leads` — they
@@ -267,8 +267,8 @@ npx prisma migrate dev   # create/apply a migration from prisma/schema.prisma
 npx prisma db seed       # run prisma/seed.ts
 ```
 
-`prisma/seed.ts` will populate placeholder demo content (the "Fairmont
-Law Agency" firm, fictional attorneys, sample matters) — kept clearly
+`prisma/seed.ts` will populate placeholder demo content (the "Pinnacle
+Legal & Business Law" firm, fictional attorneys, sample matters) — kept clearly
 separate from real firm data so it's obvious what to delete before this
 goes live with a real client's information.
 

@@ -11,7 +11,7 @@ export const generalFaqs = [
     id: "areas-served",
     question: "What areas do you serve?",
     answer:
-      "Our attorneys are licensed in England and Wales. If your matter is outside that jurisdiction, we can often refer you to trusted co-counsel.",
+      "Our attorneys are licensed in Germany. If your matter is outside that jurisdiction, we can often refer you to trusted co-counsel.",
   },
   {
     id: "billing",

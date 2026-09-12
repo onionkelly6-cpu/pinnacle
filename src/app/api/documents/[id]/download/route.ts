@@ -56,7 +56,7 @@ export async function GET(request: NextRequest, { params }: Props) {
     // fly instead of reading a file that doesn't exist.
     const placeholderText =
       `This is placeholder content for "${doc.filename}".\n\n` +
-      "Fairmont Law Agency's current build doesn't persist real uploaded " +
+      "Pinnacle Legal & Business Law's current build doesn't persist real uploaded " +
       "files (no object storage is wired up yet, see Milestone 6) — " +
       "only the filename, uploader, and visibility you set are real.\n";
 

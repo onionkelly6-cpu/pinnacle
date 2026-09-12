@@ -8,7 +8,7 @@ import { practiceAreas } from "@/lib/content/practice-areas";
 export const metadata = {
   title: "Our Attorneys",
   description:
-    "Meet the attorneys at Fairmont Law Agency, serving clients across family law, business & corporate, personal injury, and more.",
+    "Meet the attorneys at Pinnacle Legal & Business Law, serving clients across family law, business & corporate, personal injury, and more.",
 };
 
 export default function AttorneysPage() {

@@ -1,6 +1,6 @@
 ﻿export const metadata = {
   title: "Privacy Policy",
-  description: "How Fairmont Law Agency collects, uses, and protects information submitted through the public site and client portal.",
+  description: "How Pinnacle Legal & Business Law collects, uses, and protects information submitted through the public site and client portal.",
 };
 
 export default function PrivacyPage() {

@@ -30,7 +30,7 @@ const displayFont = Fraunces({
 });
 
 const DEFAULT_DESCRIPTION =
-  "Fairmont Law Agency is a modern general-practice law firm serving families, founders, and business operators with clear legal strategy and transparent client communication.";
+  "Pinnacle Legal & Business Law is a modern general-practice law firm serving families, founders, and business operators with clear legal strategy and transparent client communication.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -65,7 +65,14 @@ const legalServiceSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   telephone: offices[0].phones[0].number,
-  areaServed: ["London", "England", "United Kingdom"],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Nürnberger Straße 8",
+    postalCode: "10787",
+    addressLocality: "Berlin",
+    addressCountry: "Germany",
+  },
+  areaServed: ["Berlin", "Germany"],
 };
 
 export default function RootLayout({

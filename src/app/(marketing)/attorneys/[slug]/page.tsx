@@ -23,9 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!attorney) return { title: "Attorney" };
   return {
     title: attorney.name,
-    description: `${attorney.name}, ${attorney.title} at Fairmont Law Agency. ${attorney.bio}`,
+    description: `${attorney.name}, ${attorney.title} at Pinnacle Legal & Business Law. ${attorney.bio}`,
     openGraph: {
-      title: `${attorney.name} | Fairmont Law Agency`,
+      title: `${attorney.name} | Pinnacle Legal & Business Law`,
       description: attorney.bio,
       images: attorney.image ? [attorney.image] : undefined,
     },

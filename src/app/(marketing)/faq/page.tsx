@@ -6,7 +6,7 @@ import { jsonLd } from "@/lib/structured-data";
 export const metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Answers to the questions we hear most often about consultations, billing, jurisdictions, and the Fairmont Law Agency client portal.",
+    "Answers to the questions we hear most often about consultations, billing, jurisdictions, and the Pinnacle Legal & Business Law client portal.",
 };
 
 const faqPageSchema = {

@@ -9,28 +9,28 @@
 export const DEMO_ACCOUNTS = [
   {
     id: "demo-client-1",
-    email: "client@demo.fairmontlawagency.example",
+    email: "client@demo.pinnaclelegal.example",
     password: "ClientDemo123!",
     name: "Jordan Alvarez",
     role: "client" as const,
   },
   {
     id: "demo-attorney-1",
-    email: "attorney@demo.fairmontlawagency.example",
+    email: "attorney@demo.pinnaclelegal.example",
     password: "AttorneyDemo123!",
     name: "Richard Worsfold",
     role: "attorney" as const,
   },
   {
     id: "demo-staff-1",
-    email: "staff@demo.fairmontlawagency.example",
+    email: "staff@demo.pinnaclelegal.example",
     password: "StaffDemo123!",
     name: "Demo Staff",
     role: "staff" as const,
   },
   {
     id: "demo-admin-1",
-    email: "admin@demo.fairmontlawagency.example",
+    email: "admin@demo.pinnaclelegal.example",
     password: "AdminDemo123!",
     name: "Demo Admin",
     role: "admin" as const,

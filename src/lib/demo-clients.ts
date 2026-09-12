@@ -18,7 +18,7 @@ const EMAIL_KEY = (email: string) => `client:email:${email.toLowerCase()}`;
 const INDEX_KEY = "clients:ids";
 
 const seedClients: DemoClient[] = [
-  { id: "client-1", name: "Jordan Alvarez", email: "client@demo.fairmontlawagency.example" },
+  { id: "client-1", name: "Jordan Alvarez", email: "client@demo.pinnaclelegal.example" },
   { id: "client-2", name: "Morgan Reyes", email: "morgan.reyes@example.com" },
   { id: "client-3", name: "Sam Okafor", email: "sam.okafor@example.com" },
   { id: "client-4", name: "Alex Rivera", email: "alex.rivera@example.com" },

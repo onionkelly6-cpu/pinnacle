@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Scale, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { signOutAction } from "@/lib/auth-actions";
 import { WorkspaceNav } from "./workspace-nav";
@@ -31,18 +32,16 @@ export function WorkspaceHeader({
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           href={homeHref}
-          className="flex items-center gap-2.5 font-display text-lg tracking-wide"
+          className="flex items-center gap-2.5"
           onClick={() => setMenuOpen(false)}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/40 bg-primary/10">
-            <Scale className="h-4 w-4 text-primary" aria-hidden />
-          </span>
-          <span className="hidden sm:inline">
-            Fairmont Law <span className="text-primary">Agency</span>
-          </span>
-          <span className="sm:hidden">
-            F<span className="text-primary">LA</span>
-          </span>
+          <Image
+            src="/logo.jpg"
+            alt="Pinnacle Legal & Business Law"
+            width={1455}
+            height={1081}
+            className="h-11 w-auto shrink-0 rounded-sm"
+          />
           {subtitle && (
             <span className="hidden font-sans text-xs text-muted-foreground sm:inline">
               {subtitle}

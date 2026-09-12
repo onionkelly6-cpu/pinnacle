@@ -1,6 +1,6 @@
 ﻿export const metadata = {
   title: "Terms of Use",
-  description: "Terms governing use of the Fairmont Law Agency public site and client portal.",
+  description: "Terms governing use of the Pinnacle Legal & Business Law public site and client portal.",
 };
 
 export default function TermsPage() {

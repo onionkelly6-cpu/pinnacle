@@ -12,7 +12,7 @@ export async function sendEmail({
   html: string;
 }) {
   return resend.emails.send({
-    from: process.env.EMAIL_FROM ?? "Fairmont Law Agency <no-reply@fairmontlawagency.example>",
+    from: process.env.EMAIL_FROM ?? "Pinnacle Legal & Business Law <no-reply@pinnaclelegal.example>",
     to,
     subject,
     html,

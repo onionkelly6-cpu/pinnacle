@@ -1,5 +1,5 @@
 ﻿import Image from "next/image";
-import { Clock, Phone, ArrowUpRight } from "lucide-react";
+import { Clock, MapPin, Phone, ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/motion/reveal";
 import { offices } from "@/lib/content/offices";
@@ -7,7 +7,7 @@ import { offices } from "@/lib/content/offices";
 export const metadata = {
   title: "Locations",
   description:
-    "Fairmont Law Agency office locations, hours, and phone lines. Walk-ins accepted by appointment; portal clients can message their attorney directly.",
+    "Pinnacle Legal & Business Law office locations, hours, and phone lines. Walk-ins accepted by appointment; portal clients can message their attorney directly.",
 };
 
 const officeImages = [
@@ -36,7 +36,7 @@ export default function LocationsPage() {
           </p>
           <h1 className="mt-4 font-display text-4xl sm:text-5xl">Our Offices</h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            Both offices accept walk-ins by appointment. Portal clients can
+            Our office accepts walk-ins by appointment. Portal clients can
             also message their attorney directly instead of calling.
           </p>
         </div>
@@ -59,6 +59,10 @@ export default function LocationsPage() {
                 <div className="p-6">
                   <h2 className="font-display text-xl">{office.name}</h2>
                   <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+                    <p className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 shrink-0 text-primary" aria-hidden />
+                      {office.address}
+                    </p>
                     <p className="flex items-center gap-2">
                       <Clock className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                       {office.hours}

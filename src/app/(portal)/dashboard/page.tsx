@@ -39,7 +39,7 @@ export default async function DashboardPage() {
     <div>
       <h1 className="font-display text-3xl">Your Matters</h1>
       <p className="mt-2 text-muted-foreground">
-        Every matter Fairmont Law Agency is handling on your behalf, with its
+        Every matter Pinnacle Legal & Business Law is handling on your behalf, with its
         current stage and next key date.
       </p>
 

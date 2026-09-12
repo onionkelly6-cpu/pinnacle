@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Scale } from "lucide-react";
+import Image from "next/image";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 
 const VISIBLE_MS = 1300;
@@ -39,12 +39,14 @@ export function SplashScreen() {
       }}
     >
       <div className="flex flex-col items-center gap-4">
-        <span className="splash-icon-in flex h-16 w-16 items-center justify-center rounded-full border border-[#5ec99a]/40 bg-[#5ec99a]/10">
-          <Scale className="h-8 w-8 text-[#5ec99a]" />
-        </span>
-        <p className="splash-text-in font-display text-xl tracking-wide text-[#f2ede1]">
-          Fairmont Law <span className="text-[#5ec99a]">Agency</span>
-        </p>
+        <Image
+          src="/logo.jpg"
+          alt="Pinnacle Legal & Business Law"
+          width={1455}
+          height={1081}
+          priority
+          className="splash-icon-in h-28 w-auto rounded-sm"
+        />
         <span className="splash-rule-in h-px w-16 bg-[#5ec99a]" />
       </div>
     </div>

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: area.name,
     description: area.blurb,
     openGraph: {
-      title: `${area.name} | Fairmont Law Agency`,
+      title: `${area.name} | Pinnacle Legal & Business Law`,
       description: area.blurb,
     },
   };
@@ -85,7 +85,7 @@ export default async function PracticeAreaPage({ params }: Props) {
       <section className="border-t border-border bg-card">
         <div className="mx-auto max-w-4xl px-6 py-16">
           <h2 className="font-display text-2xl">
-            Why Fairmont Law Agency for {area.name}
+            Why Pinnacle Legal & Business Law for {area.name}
           </h2>
           <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {area.whyUs.map((reason, i) => (

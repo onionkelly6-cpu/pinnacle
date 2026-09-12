@@ -7,7 +7,7 @@ import { caseResultStats } from "@/lib/content/case-results";
 export const metadata = {
   title: "Case Results",
   description:
-    "A sample of case results Fairmont Law Agency has secured for clients: settlements, dismissals, and closed deals across every practice area.",
+    "A sample of case results Pinnacle Legal & Business Law has secured for clients: settlements, dismissals, and closed deals across every practice area.",
 };
 
 export default function CaseResultsPage() {
