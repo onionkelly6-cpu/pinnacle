@@ -15,8 +15,8 @@ export default function OpengraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0b1420",
-          color: "#edf4ff",
+          background: "#f7f3ea",
+          color: "#241a13",
         }}
       >
         <div
@@ -27,9 +27,9 @@ export default function OpengraphImage() {
             width: 96,
             height: 96,
             borderRadius: "50%",
-            border: "2px solid #5ec99a",
-            background: "rgba(94,201,154,0.1)",
-            color: "#5ec99a",
+            border: "2px solid #b8863a",
+            background: "rgba(184,134,58,0.1)",
+            color: "#7a2418",
             fontSize: 40,
             fontFamily: "serif",
             marginBottom: 32,
@@ -40,7 +40,7 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", fontSize: 56, fontFamily: "serif" }}>
           {SITE_NAME}
         </div>
-        <div style={{ display: "flex", fontSize: 28, color: "#a9b8ac", marginTop: 16 }}>
+        <div style={{ display: "flex", fontSize: 28, color: "#6b5c48", marginTop: 16 }}>
           Steady counsel, clearly communicated.
         </div>
       </div>

@@ -32,7 +32,7 @@ export function SplashScreen() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-999 flex items-center justify-center bg-[#0b1420] transition-all duration-500 ease-out"
+      className="fixed inset-0 z-999 flex items-center justify-center bg-[#f7f3ea] transition-all duration-500 ease-out"
       style={{
         opacity: phase === "fading" ? 0 : 1,
         transform: phase === "fading" ? "scale(1.05)" : "scale(1)",
@@ -47,7 +47,7 @@ export function SplashScreen() {
           priority
           className="splash-icon-in h-28 w-auto rounded-sm"
         />
-        <span className="splash-rule-in h-px w-16 bg-[#5ec99a]" />
+        <span className="splash-rule-in h-px w-16 bg-[#b8863a]" />
       </div>
     </div>
   );

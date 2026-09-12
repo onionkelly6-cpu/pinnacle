@@ -55,8 +55,8 @@ export const metadata: Metadata = {
 
 // Next.js 16: viewport/themeColor moved out of `metadata` into a separate export.
 export const viewport: Viewport = {
-  themeColor: "#0b1420",
-  colorScheme: "dark light",
+  themeColor: "#f7f3ea",
+  colorScheme: "light",
 };
 
 const legalServiceSchema = {

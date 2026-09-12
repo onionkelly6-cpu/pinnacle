@@ -11,61 +11,66 @@
   /* Fallback = portal theme, so any ungrouped route
      (e.g. a root-level not-found page) still renders sensibly. */
   --background: #f7f3ea;
-  --card: #fffdf8;
-  --foreground: #1c2b22;
-  --muted: #eef0e2;
-  --muted-foreground: #5e6b5a;
-  --border: #dcdcc6;
-  --primary: #1f5c45;
-  --primary-foreground: #f3fbf6;
+  --card: #fffcf5;
+  --foreground: #241a13;
+  --muted: #efe6d3;
+  --muted-foreground: #6b5c48;
+  --border: #ddd0ac;
+  --primary: #7a2418;
+  --primary-foreground: #f9ece6;
   --accent: #b8863a;
   --accent-foreground: #2e1d05;
-  --success: #2f7d4f;
+  --success: #3f7d4a;
   --warning: #a16824;
   --destructive: #a13d33;
-  --ring: #1f5c45;
+  --ring: #7a2418;
 }
 
+/*
+ * Both scopes share the same warm ivory / burgundy / gold palette lifted
+ * from the firm mark (cream card, burgundy scale, gold laurel), so the
+ * marketing site and the client portal read as one brand rather than two.
+ */
 .theme-marketing {
-  --background: #0b1420;
-  --card: #12201b;
-  --foreground: #f2ede1;
-  --muted: #17281f;
-  --muted-foreground: #a9b8ac;
-  --border: #2a4536;
-  --primary: #5ec99a;
-  --primary-foreground: #06231a;
-  --accent: #e0b563;
+  --background: #f7f3ea;
+  --card: #fffcf5;
+  --foreground: #241a13;
+  --muted: #efe6d3;
+  --muted-foreground: #6b5c48;
+  --border: #ddd0ac;
+  --primary: #7a2418;
+  --primary-foreground: #f9ece6;
+  --accent: #b8863a;
   --accent-foreground: #2e1d05;
-  --accent-2: #8fd6b0;
-  --success: #5dc595;
-  --warning: #e8a454;
-  --destructive: #ee7466;
-  --ring: #5ec99a;
-  --hero-from: #0f1f18;
-  --hero-to: #081119;
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.02), 0 12px 32px -18px rgba(0, 0, 0, 0.6);
+  --accent-2: #e2c275;
+  --success: #3f7d4a;
+  --warning: #a16824;
+  --destructive: #a13d33;
+  --ring: #7a2418;
+  --hero-from: #f3efe3;
+  --hero-to: #e6ded1;
+  --shadow-card: 0 1px 2px rgba(36, 26, 19, 0.07), 0 16px 32px -20px rgba(36, 26, 19, 0.35);
 }
 
 .theme-portal {
   --background: #f7f3ea;
-  --card: #fffdf8;
-  --foreground: #1c2b22;
-  --muted: #eef0e2;
-  --muted-foreground: #5e6b5a;
-  --border: #dcdcc6;
-  --primary: #1f5c45;
-  --primary-foreground: #f3fbf6;
+  --card: #fffcf5;
+  --foreground: #241a13;
+  --muted: #efe6d3;
+  --muted-foreground: #6b5c48;
+  --border: #ddd0ac;
+  --primary: #7a2418;
+  --primary-foreground: #f9ece6;
   --accent: #b8863a;
   --accent-foreground: #2e1d05;
-  --accent-2: #7fae8f;
-  --success: #2f7d4f;
+  --accent-2: #e2c275;
+  --success: #3f7d4a;
   --warning: #a16824;
   --destructive: #a13d33;
-  --ring: #1f5c45;
+  --ring: #7a2418;
   --hero-from: #f3efe3;
-  --hero-to: #e6e0cd;
-  --shadow-card: 0 1px 2px rgba(28, 43, 34, 0.07), 0 16px 32px -20px rgba(28, 43, 34, 0.35);
+  --hero-to: #e6ded1;
+  --shadow-card: 0 1px 2px rgba(36, 26, 19, 0.07), 0 16px 32px -20px rgba(36, 26, 19, 0.35);
 }
 
 @theme inline {
