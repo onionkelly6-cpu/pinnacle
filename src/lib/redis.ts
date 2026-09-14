@@ -13,6 +13,21 @@ if (!redisUrl || !redisToken) {
 	);
 }
 
+const client = new Redis({ url: redisUrl, token: redisToken });
+
+// This database is shared with at least one other Vercel project (same
+// Upstash instance, connected to both). Every key this app touches — matter:*,
+// client:*, account:*, lead:*, etc. — is a plain unnamespaced string, so
+// without a prefix the two apps would silently read and overwrite each
+// other's records. Prefixing every key here keeps this app's data fully
+// apportioned within the shared instance without needing a second database
+// or touching the other project at all.
+const KEY_PREFIX = "pinnacle:";
+
+function withPrefix(key: string): string {
+	return key.startsWith(KEY_PREFIX) ? key : `${KEY_PREFIX}${key}`;
+}
+
 /**
  * Shared Upstash Redis client. Upstash's REST protocol (plain HTTPS calls,
  * no persistent connection) is what makes it usable from Vercel's
@@ -27,5 +42,21 @@ if (!redisUrl || !redisToken) {
  * requests to. It also backs the per-matter version counter that
  * `LiveMatterUpdates` polls instead of the old SSE/`EventEmitter` setup,
  * which only worked within a single process.
+ *
+ * Wrapped in a Proxy that namespaces every key (see KEY_PREFIX above) —
+ * every command this app uses (get/set/sadd/smembers/scard/srem/del/incr/
+ * rpush/lrange) takes the key as its first argument, so prefixing that one
+ * argument transparently namespaces all of it with no call-site changes.
  */
-export const redis = new Redis({ url: redisUrl, token: redisToken });
+export const redis = new Proxy(client, {
+	get(target, prop) {
+		const value = Reflect.get(target, prop);
+		if (typeof value !== "function") return value;
+		return (...args: unknown[]) => {
+			if (typeof args[0] === "string") {
+				args[0] = withPrefix(args[0]);
+			}
+			return value.apply(target, args);
+		};
+	},
+}) as Redis;
