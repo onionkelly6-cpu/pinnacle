@@ -1,11 +1,10 @@
 ﻿import Image from "next/image";
-import { Clock, Mail, Phone } from "lucide-react";
+import { Clock, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/motion/reveal";
 import { practiceAreas } from "@/lib/content/practice-areas";
 import { offices } from "@/lib/content/offices";
-import { SITE_CONTACT_EMAIL } from "@/lib/site-config";
 import { submitLeadAction } from "./actions";
 
 export const metadata = {
@@ -145,10 +144,6 @@ export default async function ContactPage({ searchParams }: Props) {
             <div className="flex-1 bg-card p-6">
               <h2 className="font-display text-lg">Prefer to reach out directly?</h2>
               <ul className="mt-5 space-y-4 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2.5">
-                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  <span className="font-mono">{SITE_CONTACT_EMAIL}</span>
-                </li>
                 <li className="flex items-start gap-2.5">
                   <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
                   We typically respond within one business day.

@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail } from "lucide-react";
 import { practiceAreas } from "@/lib/content/practice-areas";
 import { offices } from "@/lib/content/offices";
-import { SITE_CONTACT_EMAIL, SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
 
 const firmLinks = [
   { href: "/about", label: "About the Firm" },
@@ -80,13 +79,7 @@ export function SiteFooter() {
             <h3 className="font-display text-sm uppercase tracking-wide text-primary">
               Get in Touch
             </h3>
-            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                <span className="font-mono">{SITE_CONTACT_EMAIL}</span>
-              </li>
-            </ul>
-            <ul className="mt-5 space-y-3 text-xs text-muted-foreground">
+            <ul className="mt-4 space-y-3 text-xs text-muted-foreground">
               {offices.map((office) => (
                 <li key={office.name}>
                   <p className="font-medium text-foreground">{office.name}</p>
