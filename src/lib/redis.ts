@@ -1,17 +1,20 @@
 import { Redis } from "@upstash/redis";
 
-const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+// Vercel's Upstash-for-Redis marketplace integration names these
+// KV_REST_API_URL / KV_REST_API_TOKEN (legacy Vercel KV naming) instead of
+// Upstash's own UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN — accept
+// either so a marketplace-connected store works without renaming vars.
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
 
 if (!redisUrl || !redisToken) {
 	throw new Error(
-		"Missing Upstash Redis env vars. Set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN in .env.",
+		"Missing Upstash Redis env vars. Set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN (or KV_REST_API_URL / KV_REST_API_TOKEN) in .env.",
 	);
 }
 
 /**
- * Shared Upstash Redis client, read from `UPSTASH_REDIS_REST_URL` /
- * `UPSTASH_REDIS_REST_TOKEN`. Upstash's REST protocol (plain HTTPS calls,
+ * Shared Upstash Redis client. Upstash's REST protocol (plain HTTPS calls,
  * no persistent connection) is what makes it usable from Vercel's
  * serverless functions in the first place — a normal Redis client would
  * need a long-lived TCP connection those functions don't give you.
@@ -25,4 +28,4 @@ if (!redisUrl || !redisToken) {
  * `LiveMatterUpdates` polls instead of the old SSE/`EventEmitter` setup,
  * which only worked within a single process.
  */
-export const redis = Redis.fromEnv();
+export const redis = new Redis({ url: redisUrl, token: redisToken });
