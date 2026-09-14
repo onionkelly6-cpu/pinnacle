@@ -123,10 +123,22 @@ export async function getMatterById(id: string): Promise<DemoMatter | undefined>
 }
 
 /**
- * Opens a new matter — used by Lead → Convert to Matter (`/firm/leads`).
- * Always starts at the first case stage, assigned directly to the
- * converting attorney rather than dropped into the unclaimed pool, since
- * they're the one who reviewed the lead and chose to take the case.
+ * Shared by every path that opens a new matter (Lead → Convert, and an
+ * attorney creating a matter directly for an existing client) so case
+ * numbers follow one format no matter which flow created them.
+ */
+export function generateCaseNumber(practiceAreaCode: string): string {
+  const year = new Date().getFullYear();
+  const sequence = String(Math.floor(Math.random() * 100000)).padStart(5, "0");
+  return `${practiceAreaCode}-${year}-${sequence}`;
+}
+
+/**
+ * Opens a new matter — used by Lead → Convert to Matter (`/firm/leads`) and
+ * by an attorney creating a matter directly for an existing client
+ * (`/firm/clients`). Always starts at the first case stage, assigned
+ * directly to the creating attorney rather than dropped into the unclaimed
+ * pool, since they're the one who chose to take the case.
  */
 export async function createMatter(params: {
   caseNumber: string;

@@ -2,18 +2,12 @@ import { NextResponse, type NextRequest } from "next/server";
 import { auth } from "@/lib/auth";
 import { getLeadById, markLeadConverted } from "@/lib/demo-leads";
 import { createClient } from "@/lib/demo-clients";
-import { createMatter } from "@/lib/demo-matters";
+import { createMatter, generateCaseNumber } from "@/lib/demo-matters";
 import { practiceAreas } from "@/lib/content/practice-areas";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
-
-function generateCaseNumber(practiceAreaCode: string): string {
-  const year = new Date().getFullYear();
-  const sequence = String(Math.floor(Math.random() * 100000)).padStart(5, "0");
-  return `${practiceAreaCode}-${year}-${sequence}`;
-}
 
 /**
  * Converting a lead creates the client record and case in one step — the

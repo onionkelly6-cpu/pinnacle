@@ -46,6 +46,11 @@ export async function getClientAccountByEmail(
   return account ?? undefined;
 }
 
+export async function getClientAccountById(id: string): Promise<ClientAccount | undefined> {
+  const account = await redis.get<ClientAccount>(ACCOUNT_KEY(id));
+  return account ?? undefined;
+}
+
 export async function createClientAccount(params: {
   email: string;
   password: string;
